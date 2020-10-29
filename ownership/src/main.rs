@@ -31,7 +31,6 @@ fn main() {
     let s4 = s2;
     println!("s3: {}", s3);
     println!("s4: {}", s4);
-
     let (s2, len) = calculate_length(s3);
     println!("The length of '{}' is {}.", s2, len);
 }
@@ -45,7 +44,6 @@ fn makes_copy(some_integer: i32) {
 }
 
 fn calculate_length(s: String) -> (String, usize) {
-    let length = s.len(); // len() 返回字符串的长度
-
+    let length = s.len(); 
     (s, length)
 }
