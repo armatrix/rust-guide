@@ -129,6 +129,40 @@ fn not_dangle(some_string: String) -> &String {
 
 特别要注意返回值的问题，注意return的位置
 
+这里和go很类似，go是对底层数组的引用，这里则是对String的引用
+
+### Struct
+
+在结构体上定义方法和关联函数来指定与结构体数据相关的行为
+
+这个和go就比较像了
+
+注意这里引用另外一个结构体的时候的写法，类似go中的拆包
+
+tuple stuct，这里的black 和origin不是同一个类型，这个类似go的type
+
+```rust
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+let black = Color(0, 0, 0);
+let origin = Point(0, 0, 0);
+```
+
+还有个没有任何字段的类单元结构体
+
+>  **类单元结构体**（*unit-like structs*）因为它们类似于 `()`，即 unit 类型。类单元结构体常常在你想要在某个类型上实现 trait 但不需要在类型中存储数据的时候发挥作用
+
+
+
+生命周期确保结构体引用的数据有效性跟结构体本身保持一致，&str是不具备拥有所有权的，注意这里声明相关的结构体field需额外声明lifetimes
+
+
+
+
+
 ## TODO
 
 宏调用不进行回收吗
+
+类单元结构体

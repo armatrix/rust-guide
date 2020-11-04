@@ -8,6 +8,11 @@ fn main() {
 
     let word = first_word(&s);
     println!("word: {}", word);
+
+    let s1 = "anderson";
+    // 注意这种是不❌ok的啊
+    // println!("s1 s1[2..3]: {}",s1[2..3]);
+    println!("s1 &s1[2..3]: {}",&s1[2..3]);
 }
 
 fn first_word(s: &String) -> &str {
@@ -22,7 +27,6 @@ fn first_word(s: &String) -> &str {
             return &s[0..i];
         }
     }
-    // TODO注意这里是不会输出的，似乎这里不是自上而下的
     println!("outter s: {}", s);
     &s[..]
 }
