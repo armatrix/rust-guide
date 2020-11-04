@@ -153,16 +153,29 @@ let origin = Point(0, 0, 0);
 
 >  **类单元结构体**（*unit-like structs*）因为它们类似于 `()`，即 unit 类型。类单元结构体常常在你想要在某个类型上实现 trait 但不需要在类型中存储数据的时候发挥作用
 
-
-
 生命周期确保结构体引用的数据有效性跟结构体本身保持一致，&str是不具备拥有所有权的，注意这里声明相关的结构体field需额外声明lifetimes
 
+使用\#[derive(Debug)] 注解来增加注解来派生 `Debug` trait
 
+ {:?}使用调试格式
 
+```rust
+# 这个也很类似go
+p1.distance(&p2);
+(&p1).distance(&p2);
+```
 
+类似String::from是关联函数*associated functions*，不是方法，使用:: 来调用
 
 ## TODO
 
 宏调用不进行回收吗
 
 类单元结构体
+
+```rust
+impl Rectangle {
+    fn destory(self) {}
+}
+```
+
