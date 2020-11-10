@@ -179,6 +179,39 @@ match将一个值与一系列的模式进行匹配
 
 `let if` 让我们只处理1与非1的情况
 
+### Packages, crates and modules
+
+ A *package* is one or more crates that provide a set of functionality. A package contains a *Cargo.toml* file that describes how to build those crates.
+
+一个包中必须包含一个crate，包含的crate中最多只能有一个library crates，通过Cargo.toml去描述如何构建这些crate
+
+通用约定：*src/main.rs*  就是一个与包同名的二进制 crate 的 crate 根，类似的，库的crate根在 *src/lib.rs*下
+
+命名路径（paths） use，pub，as，外部包，glob运算符
+
+注意这里模块包含关系，这里类似文件系统的自上而下，和go中不同
+
+对crate的寻址也包含绝对路径和相对路径两种，一种以crate开头，一种以self、super或当前模块的标识开头
+
+Rust 中默认所有项（函数、方法、结构体、枚举、模块和常量）都是私有的，go中使用开头是大小写来标识，尽管使用的pub来让结构体变成公有的，但内部字段仍然是私有的，但在enum中一旦声明，所有的都变成了公有的
+
+use, use as, pub use
+
+```rust
+use std::{cmp::Ordering, io};
+
+use std::io;
+use std::io::Write;
+
+use std::io::{self, Write};
+
+use std::collections::*;
+```
+
+mod对包进行进一步的拆分
+
+
+
 ## TODO
 
 宏调用不进行回收吗
@@ -191,3 +224,4 @@ impl Rectangle {
 }
 ```
 
+结构体的赋值可以在有默认值的同时通过后面的赋值来指定吗
