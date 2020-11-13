@@ -210,6 +210,14 @@ use std::collections::*;
 
 mod对包进行进一步的拆分
 
+Collections
+
+集合的数据存储在堆上，数量可以在运行时增长或缩小。
+
+vector在内存中彼此相邻的排列，vector只能存储相同类型的值，同样的，离开作用域即销毁，对vector的访问可以通过索引和get方法。
+
+对vector进行引用之后，不可以在对vector进行push等会对内存进行重新分配的操作，
+
 
 
 ## TODO
@@ -225,3 +233,5 @@ impl Rectangle {
 ```
 
 结构体的赋值可以在有默认值的同时通过后面的赋值来指定吗
+
+vector同go的sli进行对比
