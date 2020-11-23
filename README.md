@@ -210,13 +210,23 @@ use std::collections::*;
 
 mod对包进行进一步的拆分
 
-Collections
+### Collections
 
 集合的数据存储在堆上，数量可以在运行时增长或缩小。
+
+#### Vector
 
 vector在内存中彼此相邻的排列，vector只能存储相同类型的值，同样的，离开作用域即销毁，对vector的访问可以通过索引和get方法。
 
 对vector进行引用之后，不可以在对vector进行push等会对内存进行重新分配的操作，
+
+#### Strings
+
+字符串不支持索引。`String` 是一个 `Vec<u8>` 的封装
+
+索引操作预期总是需要常数时间 (O(1))
+
+
 
 
 
