@@ -230,6 +230,29 @@ vector在内存中彼此相邻的排列，vector只能存储相同类型的值�
 
 只能在返回 `Result` 或者其它实现了 `std::ops::Try` 的类型的函数中使用 `?` 运算符
 
+### 范型，trait与生命周期
+
+Rust 通过在编译时进行泛型代码的 **单态化**（*monomorphization*）来保证效率。单态化是一个通过填充编译时使用的具体类型，将通用代码转换为特定代码的过程。
+
+*trait* 告诉 Rust 编译器某个特定类型拥有可能与其他类型共享的功能。可以通过 trait 以一种抽象的方式定义共享的行为。可以使用 *trait bounds* 指定泛型是任何拥有特定行为的类型。类似go的接口
+
+公有trait和私有trait
+
+在返回中实现trait的类型 闭包和迭代器场景
+
+```rust
+// 当我们使用范型作为参数的时候，要注意我们的逻辑中对可能存在的范型实现造成的侵入，如这里我们将值进行传递，但可能存在一些所有权已经丢失的情况
+fn largest<T:PartialOrd + Copy>(list: &[T])->T{
+    let mut largest = list[0];
+    for &item in list{
+        if item > largest{
+            largest = item;
+        }
+    }
+    largest
+}
+```
+
 
 
 ## TODO
