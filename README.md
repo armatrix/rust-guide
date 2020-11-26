@@ -277,6 +277,51 @@ Rust 编译器有一个 **借用检查器**（*borrow checker*），用来比较
 
 生命周期：`'static`，其生命周期**能够**存活于整个程序期间。所有的字符串字面值都拥有 `'static` 生命周期
 
+### Test
+
+标准库提供assert！宏，如果入参结果为false时，会调用panic！宏，导致测试失败
+
+`assert_eq!` 和 `assert_ne!` 宏在底层分别使用了 `==` 和 `!=`
+
+当断言失败时，这些宏会使用调试格式打印出其参数，这意味着被比较的值必需实现了 `PartialEq` 和 `Debug` trait
+
+所有的基本类型和大部分标准库类型都实现了这些 trait
+
+对于自定义的结构体和枚举，需要实现 `PartialEq` 才能断言他们的值是否相等
+
+需要实现 `Debug` 才能在断言失败时打印他们的值。因为这两个 trait 都是派生 trait
+
+通常可以直接在结构体或枚举上添加 `#[derive(PartialEq, Debug)]` 注解
+
+```rust
+
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(num: i32) -> Guess {
+        if num < 1 || num > 100 {
+            panic!("not in 1..100")
+        }
+        Guess { value: num }
+    }
+}
+// 这里的简写可以稍微重复一下
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("not in 1..100")
+        }
+        Guess { value }
+    }
+}
+```
+
+不能对这些使用 `Result<T, E>` 的测试使用 `#[should_panic]` 注解。相反应该在测试失败时直接返回 `Err` 值。注意使用这种注解的时机
+
+
+
 ## TODO
 
 宏调用不进行回收吗
