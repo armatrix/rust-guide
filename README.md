@@ -2,21 +2,57 @@
 
 ### 更新源
 
+修改配置文件
+
 ```shell
 vim $HOME/.cargo/config
+```
 
-# 添加如下或更换其他的源
+添加如下内容
+
+```shell
 [source.crates-io]
 registry = "https://github.com/rust-lang/crates.io-index"
-replace-with = 'ustc'
+
+# 替换成你偏好的镜像源
+replace-with = 'sjtu'
+
+# 清华大学
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+
+# 中国科学技术大学
 [source.ustc]
 registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 
-# 更新
-rustup update
+# 上海交通大学
+[source.sjtu]
+registry = "https://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index"
+
+# rustcc社区
+[source.rustcc]
+registry = "git://crates.rustcc.cn/crates.io-index"
 ```
 
+可能会触发的错误 warning: spurious network error (1 tries remaining): [6] Couldn't resolve host name (Could not resolve host: crates)，太多的连接数，可以通过追加环境变量来解决
 
+```shell
+export CARGO_HTTP_MULTIPLEXING=false
+```
+
+其他的一些变量
+
+```shell
+# 清华大学
+RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+
+# 中国科学技术大学
+RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+
+# 上海交通大学
+RUSTUP_DIST_SERVER=https://mirrors.sjtug.sjtu.edu.cn/rust-static/
+```
 
 ### 基础概念
 
