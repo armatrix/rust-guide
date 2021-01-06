@@ -1,5 +1,23 @@
 # rust guide
 
+### 更新源
+
+```shell
+vim $HOME/.cargo/config
+
+# 添加如下或更换其他的源
+[source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
+replace-with = 'ustc'
+[source.ustc]
+registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+
+# 更新
+rustup update
+```
+
+
+
 ### 基础概念
 
 **预编译静态类型**（*ahead-of-time compiled*）语言
